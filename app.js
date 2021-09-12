@@ -35,4 +35,4 @@ function calculateProfitAndLoss(initial, quantity, current) {
 
 function showOutput(message) {
 	outputBox.innerHTML = message;
-}
+}s
