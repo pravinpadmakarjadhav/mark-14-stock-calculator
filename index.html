@@ -4,38 +4,28 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="styles.css" />
-		<title>Mark 14 - Stocks</title>
+		<title>Stock calculator</title>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h1>Mark 14 - Stocks</h1>
-
 		<main>
-			<label for="initial-price">
-				Intial Price
-				<input type="text" id="initial-price" placeholder="Enter Initial Price Here"
-			/></label>
-			<label for="stocks-quantity">
-				Quantity of Stocks
+			<div class="leftside">
+				<h2>Stock profit loss</h2>
+				<input type="number" id="ip_input" placeholder="Enter Initial Price here" /><br />
 				<input
-					type="text"
-					id="stocks-quantity"
-					placeholder="Enter the Number of Stocks bought"
-				/>
-			</label>
-			<label for="current-price"
-				>Current Price
-				<input
-					type="text"
-					id="current-price"
-					placeholder="Enter the Current Price of the stocks"
-			/></label>
+					type="number"
+					id="quantity_input"
+					placeholder="Enter Number of Stocks here"
+				/><br />
+				<input type="number" id="cp_input" placeholder="Enter Current Price Here" /><br />
+				<button id="submit-btn">Check!</button>
+			</div>
 
-			<button id="submit-btn">Tell Me!!</button>
-
-			<div id="output-box"></div>
-
-			<script src="app.js"></script>
+			<div class="rightside">
+				<div id="output_box"></div>
+			</div>
 		</main>
+
+		<script src="app.js"></script>
 	</body>
 </html>
