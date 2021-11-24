@@ -1,41 +1,38 @@
-const ipInput = document.querySelector('#ip_input');
-const quantityInput = document.querySelector('#quantity_input');
-const cpInput = document.querySelector('#cp_input');
-const outputBox = document.querySelector('#output_box');
-const submitBtn = document.querySelector('#submit-btn');
 
-// Step - Adding Event Listeners
+var initialPrice = document.querySelector('#initial-price');
+var stocksQuantity = document.querySelector('#stocks-quantity');
+var currentPrice = document.querySelector('#current-price');
+var submitBtn = document.querySelector('#submit-btn');
+var outputBox = document.querySelector('#output-box');
+
+
 submitBtn.addEventListener('click', submitHandler);
 
 function submitHandler() {
-	var initialPrice = Number(ipInput.value);
-	var currentPrice = Number(cpInput.value);
-	var stocksQuantity = Number(quantityInput.value);
+	var ip = Number(initialPrice.value);
+	var qty = Number(stocksQuantity.value);
+	var curr = Number(currentPrice.value);
 
-	calculateProfitOrLoss(initialPrice, stocksQuantity, currentPrice);
+	calculateProfitAndLoss(ip, qty, curr);
 }
 
-// Step - Calculate profit and Loss
-function calculateProfitOrLoss(initial, quantity, current) {
-	// loss condition
+
+function calculateProfitAndLoss(initial, quantity, current) {
 	if (initial > current) {
-		let loss = (initial - current) * quantity;
-		let lossPercentage = (loss / (initial * quantity)) * 100;
-		outputBox.style.color = 'red';
-		outputBox.innerHTML = `Whoops!! Your loss is ${loss} and loss Percentage is ${lossPercentage}% :(`;
+		var loss = (initial - current) * quantity;
+		var lossPercentage = (loss / initial) * 100;
+
+		showOutput(`Hey the loss is ${loss} and the percent is ${lossPercentage}%`);
+	} else if (current > initial) {
+		var profit = (current - initial) * quantity;
+		var profitPercentage = (profit / initial) * 100;
+
+		showOutput(`Hey the profit is ${profit} and the percent is ${profitPercentage}%`);
+	} else {
+		showOutput(`No pain no gain and no gain no pain`);
 	}
-	// profit calculation
-	else if (initial < current) {
-		let profit = (current - initial) * quantity;
-		let profitPercentage = (profit / (initial * quantity)) * 100;
-		outputBox.style.color = 'green';
-		outputBox.innerHTML = `Yay!! Your Profit is ${profit.toFixed(
-			2
-		)} and profit Percentage is ${profitPercentage.toFixed(2)}%`;
-	}
-	// No profit, no loss
-	else {
-		outputBox.style.color = 'white';
-		outputBox.innerHTML = `No pain No gain, and no gain no pain :)`;
-	}
+}
+
+function showOutput(message) {
+	outputBox.innerHTML = message;
 }
