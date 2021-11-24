@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-		<title>Mark 14 - Stocks</title>
-	</head>
-	<body>
-		<h1>Mark 14 - Stocks</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+	
+    <title>Stock App</title>
+</head>
+<body>
+    
+<div class="container">
+    <h1>Stock Purchase App</h1>
+    <p>Enter the details to know your total returns on investment</p>
 
-		<main>
-			<label for="initial-price" class="label">
-				Intial Price
-				<input type="text" id="initial-price" placeholder="Enter Initial Price Here"
-			/></label><br>
-			<label for="stocks-quantity" class="label">
-				Quantity of Stocks
-				<input
-					type="text"
-					id="stocks-quantity"
-					placeholder="Enter the Number of Stocks bought"
-				/><br>
-			</label>
-			<label for="current-price"
-				class=" label">Current Price
-				<input
-					type="text"
-					id="current-price"
-					placeholder="Enter the Current Price of the stocks"
-			/></label>
+    <div class="section">
+        <label for="initial-price">Initial Price : 
+            <input type="number" min="1" id="initial-price" placeholder="enter initial price">
+        </label>
+    
+        <label for="stock-quantity">Quantity : 
+            <input type="number" min="1" id="stock-quantity" placeholder="enter no. of stocks">
+        </label>
+    
+        <label for="current-price">Current Price : 
+            <input type="number" min="1" id="current-price" placeholder="enter current price">
+        </label>
+    
+        <button id="submit-btn">Tell me !!</button>
+        <div id="loading-img"></div>
+        <div id="output-box"></div>
+    </div>
 
-			<button id="submit-btn">Tell Me!!</button>
+</div>
 
-			<div id="output-box"></div>
 
-			<script src="app.js"></script>
-		</main>
-	</body>
+
+    <script src="./app.js"></script>
+</body>
 </html>

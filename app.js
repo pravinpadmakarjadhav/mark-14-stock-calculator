@@ -1,38 +1,52 @@
+const initialPrice = document.querySelector("#initial-price");
+const stocksQuantity = document.querySelector("#stock-quantity");
+const currentPrice = document.querySelector("#current-price");
+const submitButton = document.querySelector("#submit-btn");
+const outputBox = document.querySelector("#output-box");
+const loadingImg = document.querySelector("#loading-img");
 
-var initialPrice = document.querySelector('#initial-price');
-var stocksQuantity = document.querySelector('#stocks-quantity');
-var currentPrice = document.querySelector('#current-price');
-var submitBtn = document.querySelector('#submit-btn');
-var outputBox = document.querySelector('#output-box');
+submitHandler = () => {
+    var iPrice = Number(initialPrice.value);
+    var qty = Number(stocksQuantity.value);
+    var cPrice = Number(currentPrice.value);
 
-
-submitBtn.addEventListener('click', submitHandler);
-
-function submitHandler() {
-	var ip = Number(initialPrice.value);
-	var qty = Number(stocksQuantity.value);
-	var curr = Number(currentPrice.value);
-
-	calculateProfitAndLoss(ip, qty, curr);
+    calculateProfitAndLoss(iPrice, qty, cPrice);
 }
 
 
-function calculateProfitAndLoss(initial, quantity, current) {
-	if (initial > current) {
-		var loss = (initial - current) * quantity;
-		var lossPercentage = (loss / initial) * 100;
+calculateProfitAndLoss = (initial, quantity, current) => {
+    loadingImg.style.display = "block";
+    outputBox.innerHTML = "";
+    setTimeout(() => {
+        loadingImg.style.display = "none";
+        if (initial <= 0 || quantity <= 0 || current <= 0) {
+            return outputBox.innerText = "Please enter valid inputs";
+        }
 
-		showOutput(`Hey the loss is ${loss} and the percent is ${lossPercentage}%`);
-	} else if (current > initial) {
-		var profit = (current - initial) * quantity;
-		var profitPercentage = (profit / initial) * 100;
+        else if (initial < current) {
+            //profit logic
+            var profit = (current - initial) * quantity;
+            var profitPercentage = (profit / (initial * quantity)) * 100;
+            showOutput(`The profit is ${profit} and profit percentage is ${profitPercentage.toFixed(2)}% 💰🤩`);
+            outputBox.style.backgroundColor = 'green';
 
-		showOutput(`Hey the profit is ${profit} and the percent is ${profitPercentage}%`);
-	} else {
-		showOutput(`No pain no gain and no gain no pain`);
-	}
+        } else if (initial > current) {
+            //loss logic
+            var loss = (initial - current) * quantity;
+            var lossPercentage = (loss / (initial * quantity)) * 100;
+            showOutput(`The loss is ${loss} and the loss percentage is ${lossPercentage.toFixed(2)}% 😌`);
+            outputBox.style.backgroundColor = 'red';
+
+        } else {
+            showOutput("You are on 'break-even' point! Means, No profit or no loss yet! ");
+            outputBox.style.backgroundColor = 'white';
+        }
+    }, 2000);
+
 }
 
-function showOutput(message) {
-	outputBox.innerHTML = message;
+showOutput = (message) => {
+    outputBox.innerHTML = message;
 }
+
+submitButton.addEventListener("click", submitHandler);
